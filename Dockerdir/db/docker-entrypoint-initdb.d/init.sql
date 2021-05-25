@@ -1,7 +1,19 @@
-CREATE TABLE `books` (
-    `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `isbn` VARCHAR(50) NULL DEFAULT NULL,
-    `full_title` TEXT NULL DEFAULT NULL,
-    `publishing_date` DATE NULL,
-    PRIMARY KEY (`id`)
+CREATE DATABASE moodtracker;
+
+create table user
+(
+    id   int      not null
+        primary key,
+    name tinytext null
 );
+
+create table mood
+(
+    timestamp datetime     not null,
+    score     decimal(1,0)   not null,
+    user_id int
+);
+
+alter table mood
+    add constraint mood_use_id_fk
+        foreign key (user_id) references `user` (id);
